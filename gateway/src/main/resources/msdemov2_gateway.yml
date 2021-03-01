@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /gateway
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: path_route
+          uri: http://www.baidu.com
+          predicates:
+            - Path=/baidu/**
+          filters:
+            - StripPrefix=1
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
